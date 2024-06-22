@@ -74,7 +74,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "minimun-rusqlite"
+name = "minimum-rusqlite"
 version = "0.1.0"
 dependencies = [
  "rusqlite",

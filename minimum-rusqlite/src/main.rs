@@ -114,7 +114,7 @@ fn insert_students(connection: &Connection, students: Vec<Student>) -> Result<()
 }
 
 #[cfg(test)]
-mod minimun_resqlite_tests {
+mod minimum_resqlite_tests {
     use super::*;
 
     #[test]

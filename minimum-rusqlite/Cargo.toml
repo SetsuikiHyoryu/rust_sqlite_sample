@@ -1,0 +1,13 @@
+[package]
+name = "minimum-rusqlite"
+version.workspace = true
+author.workspace = true
+edition.workspace = true
+description = "最小 Rusqlite 应用。"
+homepage.workspace = true
+repositiory.wokspace = true
+license.workspace = true
+keywords.workspace = true
+
+[dependencies]
+rusqlite = { version = "0.31.0", features = ["bundled"] }
