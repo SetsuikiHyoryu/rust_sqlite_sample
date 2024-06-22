@@ -16,13 +16,13 @@ fn main() -> Result<()> {
     let connection = Connection::open(compute_database_path())?;
 
     // 在 rusqlite 里使用 sqlite 语法创建表格
-    create_table(&connection)?;
+    create_students_table(&connection)?;
 
     // 在 rusqlite 里使用 sqlite 语法从表格中获取数据
-    let database_students = get_students(&connection)?;
+    let database_students = get_students_from_database(&connection)?;
 
     // 如果表中不存在和要插入的数据相冋的数据，则插入数据。
-    let students = prepare_raw_data();
+    let students = generate_students();
     let exist = database_students.iter().any(|database_student| {
         students
             .iter()
@@ -34,7 +34,7 @@ fn main() -> Result<()> {
     }
 
     // 打印中表格中取出的数据
-    let students = get_students(&connection)?;
+    let students = get_students_from_database(&connection)?;
     for student in students {
         println!("Found student {:?}", student);
     }
@@ -48,7 +48,7 @@ fn compute_database_path() -> PathBuf {
         .join(DATABASE)
 }
 
-fn create_table(connection: &Connection) -> Result<usize> {
+fn create_students_table(connection: &Connection) -> Result<usize> {
     connection.execute(
         "CREATE TABLE IF NOT EXISTS students (
             id INTEGER PRIMARY KEY,
@@ -59,7 +59,7 @@ fn create_table(connection: &Connection) -> Result<usize> {
     )
 }
 
-fn get_students(connection: &Connection) -> Result<Vec<Student>> {
+fn get_students_from_database(connection: &Connection) -> Result<Vec<Student>> {
     let mut statement = connection.prepare("SELECT id, name, height FROM students")?;
 
     let student_iterator = statement.query_map([], |row| {
@@ -75,7 +75,7 @@ fn get_students(connection: &Connection) -> Result<Vec<Student>> {
     student_iterator.collect::<Result<Vec<Student>>>()
 }
 
-fn prepare_raw_data() -> Vec<Student> {
+fn generate_students() -> Vec<Student> {
     [
         Student {
             id: 0,
@@ -126,8 +126,8 @@ mod minimum_resqlite_tests {
     #[test]
     fn table_created() -> Result<()> {
         let connection = Connection::open_in_memory()?;
-        create_table(&connection)?;
-        get_students(&connection)?;
+        create_students_table(&connection)?;
+        get_students_from_database(&connection)?;
 
         Ok(())
     }
@@ -138,8 +138,8 @@ mod minimum_resqlite_tests {
         main()?;
 
         let connection = Connection::open(compute_database_path())?;
-        let students = prepare_raw_data();
-        let database_students = get_students(&connection)?;
+        let students = generate_students();
+        let database_students = get_students_from_database(&connection)?;
 
         assert!(database_students.len() == students.len());
 
