@@ -3,13 +3,12 @@ members = ["minimum-rusqlite"]
 resolver = "2"
 
 [workspace.package]
-version = "0.1.0"
+version = "0.1.2"
 author = ["冰龍與雪風的工作室 <57035251+SetsuikiHyoryu@users.noreply.github.com>"]
 edition = "2021"
 description = "使用 Rust 操作 SQLite。"
 readme = "README.md"
-homepage = "https://github.com/SetsuikiHyoryu/rust_sqlite_sample"
-repository = "https://github.com/SetsuikiHyoryu/rust_sqlite_sample"
+homepage = "https://setsuikihyoryu.github.io"
 license = "MIT"
-keywords = ["rusqlite", "minimum"]
+keywords = ["SQLite"]
 

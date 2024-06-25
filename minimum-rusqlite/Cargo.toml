@@ -1,13 +1,14 @@
 [package]
 name = "minimum-rusqlite"
-version.workspace = true
+version = "0.1.2"
 author.workspace = true
 edition.workspace = true
 description = "最小 Rusqlite 应用。"
+readme = "README.md"
 homepage.workspace = true
-repositiory.wokspace = true
+repository = "https://github.com/SetsuikiHyoryu/rust_sqlite_sample"
 license.workspace = true
-keywords.workspace = true
+keywords = ["rusqlite", "minimum"]
 
 [dependencies]
 rusqlite = { version = "0.31.0", features = ["bundled"] }
