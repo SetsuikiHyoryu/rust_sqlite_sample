@@ -3,7 +3,7 @@
 ## 使用方式
 
 下文默认使用者已安装 Rust 与 SQLite。  
-未安装者可从 GitHub release 页下载生成后的可执行文件（EXE 文件）尝试。
+未安装者可从 [Release](https://github.com/SetsuikiHyoryu/rust_sqlite_sample/releases) 页下载生成后的可执行文件（EXE 文件）尝试。
 
 使用可执行文件请将 `cargo run --` 替换为：
 
