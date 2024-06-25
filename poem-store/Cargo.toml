@@ -1,0 +1,26 @@
+[package]
+name = "poem-store"
+version = "0.1.0"
+authors.workspace = true
+edition.workspace = true
+description = "Rust 使用 SQLx 异步操作 SQLite 数据库。"
+readme.workspace = "README.md"
+homepage.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+
+[dependencies]
+# Rust 命令行参数解析工具
+# clap 的说明文中没有提到安装的版本和功能，使用的版本等信息参照这里：
+# See https://rust-cli.github.io/book/tutorial/cli-args.html#parsing-cli-arguments-with-clap
+clap = { version = "4.0", features = ["derive"]}
+
+# Rust 异步运行时
+tokio = { version = "1", features = ["full"] }
+
+# Rust 异步数据库工具包
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio", "tls-native-tls", "macros"] }
+
+# 处理环境变量的库
+dotenvy = "0.15.7"
